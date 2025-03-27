@@ -23,11 +23,15 @@ class Login : Activity() {
             val email = emailInput.text.toString()
             val password = passwordInput.text.toString()
 
-            // Direct validation and navigation logic
+            // Validation logic
             if (username == "admin@gmail.com" && Patterns.EMAIL_ADDRESS.matcher(email).matches() && password == "123") {
                 Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
-                // Navigate to LandingActivity
-                val intent = Intent(this, landingpage::class.java)
+
+                // Pass the data to LandingActivity using Intent.putExtra
+                val intent = Intent(this, landingpage::class.java).apply {
+                    putExtra("username", username)
+                    putExtra("email", email)
+                }
                 startActivity(intent)
                 finish()
             } else {
