@@ -23,37 +23,16 @@ class Login : Activity() {
             val email = emailInput.text.toString()
             val password = passwordInput.text.toString()
 
-            // Validation logic
-            if (isValidUsername(username) && isValidEmail(email) && password.isNotEmpty()) {
-                if (isCorrectPassword(password)) {
-                    Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
-                    // Navigate to LandingActivity
-                    val intent = Intent(this, landingpage::class.java)
-                    startActivity(intent)
-                    finish()
-                } else {
-                    Toast.makeText(this, "Invalid username or password.", Toast.LENGTH_SHORT).show()
-                }
+            // Direct validation and navigation logic
+            if (username == "admin@gmail.com" && Patterns.EMAIL_ADDRESS.matcher(email).matches() && password == "123") {
+                Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
+                // Navigate to LandingActivity
+                val intent = Intent(this, landingpage::class.java)
+                startActivity(intent)
+                finish()
             } else {
-                Toast.makeText(this, "Invalid username or password.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Invalid username, email, or password.", Toast.LENGTH_SHORT).show()
             }
         }
-    }
-
-    // Helper function to validate username
-    private fun isValidUsername(username: String): Boolean {
-        val correctUser = "admin@gmail.com"
-        return username == correctUser
-    }
-
-    // Helper function to validate email format
-    private fun isValidEmail(email: String): Boolean {
-        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
-    }
-
-    // Helper function to check if the password is correct (for demonstration purposes)
-    private fun isCorrectPassword(password: String): Boolean {
-        val correctPassword = "123"
-        return password == correctPassword
     }
 }
