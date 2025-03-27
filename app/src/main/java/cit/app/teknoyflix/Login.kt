@@ -27,7 +27,7 @@ class Login : Activity() {
             if (username == "admin@gmail.com" && Patterns.EMAIL_ADDRESS.matcher(email).matches() && password == "123") {
                 Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
 
-                // Pass the data to LandingActivity using Intent.putExtra
+                // Pass the data to LandingActivity
                 val intent = Intent(this, landingpage::class.java).apply {
                     putExtra("username", username)
                     putExtra("email", email)
